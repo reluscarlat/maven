@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userOne" class="entities.User" scope="singleton"
+          init-method="initMessage"
+          destroy-method="destroyMessage"
+    >
+        <constructor-arg name="name" value="Bob"/>
+    </bean>
+
+    <bean id="duke" class="entities.Juggler">
+        <constructor-arg value="15" />
+    </bean>
+
+    <bean id="sonnet29" class="entities.Sonnet29"></bean>
+
+    <bean id="poeticDuke" class="entities.PoeticJuggler">
+        <constructor-arg name="beanBags" value="20"/>
+        <constructor-arg ref="sonnet29" />
+    </bean>
+
+    <bean id="theStage" class="entities.Stage" factory-method="getInstance"></bean>
+
+    <bean id="kenny" class="entities.Instrumentalist" scope="prototype">
+        <property name="song" value="Jingle Bells"/>
+    </bean>
+
+    <bean id="saxophone" class="entities.Saxophone" />
+
+    <bean id="kenny2" class="entities.Instrumentalist" scope="prototype">
+        <property name="song" value="Jingle Bells" />
+        <property name="instrument" ref="saxophone" />
+    </bean>
+</beans>
